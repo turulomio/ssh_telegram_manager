@@ -5,3 +5,4 @@ dist/
 locale/*.po~
 ssh_telegram_manager.egg-info/
 .eric7project/
+.jedi

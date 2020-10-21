@@ -1,6 +1,7 @@
-from .__init__ import __versiondate__, __version__
+from .__init__ import __versiondate__, __version__,  __versiondatetime__
 from argparse import ArgumentParser, RawTextHelpFormatter
 from configparser import ConfigParser
+from datetime import datetime
 from gettext import translation
 from logging import info, ERROR, WARNING, INFO, DEBUG, CRITICAL, basicConfig, warning
 from os import path
@@ -70,16 +71,25 @@ def main():
     config.read(config_filename)
     info(_("Starting manager"))
 
+    ## Checks for current datetime set correctly due to it not crashes due to SSL telegram certificates
+    while True:
+        if datetime.now()<=__versiondatetime__:
+            info(_("Current system datetime is wrong. I will try again after 10 seconds"))
+            sleep(10)
+        else:
+            break
+
+    ## Checks for Internet
     while True:
         try:
             create_connection(("www.google.com", 80))
-            info("Internet detected")
+            info(_("Internet detected"))
             break
         except OSError:
-            warning("Internet wasn't detected. I will try again after 10 seconds")
+            warning(_("Internet wasn't detected. I will try again after 10 seconds"))
             sleep(10)
-
     
+    ## Starts connection
     updater=Updater(config["Telegram"]["Token"], use_context=True)
     dp=updater.dispatcher
 
