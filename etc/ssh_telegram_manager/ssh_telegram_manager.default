@@ -3,3 +3,6 @@ token = your_bot_token
 
 [SSHD]
 autoclose_minutes=1
+command_start=/etc/init.d/sshd start
+command_stop=/etc/init.d/sshd stop
+

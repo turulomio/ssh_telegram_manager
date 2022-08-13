@@ -82,15 +82,15 @@ def main():
     print(_("Stopping manager"))
         
 def start(update, context):
-    p=run("/etc/init.d/sshd start",  shell=True)
-    context.bot.send_message(update.message.chat_id, _("{0}: sshd daemon was launched. Return code: {1}.").format(get_hostname(), p.stdout))
+    run(config["SSHD"]["command_start"],  shell=True)
+    context.bot.send_message(update.message.chat_id, _("{0}: sshd daemon was launched.").format(get_hostname()))
     
     t = Timer(interval=int(config["SSHD"]["autoclose_minutes"])*60, function=autoclose, args=(get_hostname(),update, context))
     t.start()
 
 def autoclose(hostname, update, context):
-    p=run("/etc/init.d/sshd stop",  shell=True)
-    context.bot.send_message(update.message.chat_id, _("{0}: sshd daemon was closed automatically. Return code: {1}.").format(get_hostname(), p.stdout))
+    run(config["SSHD"]["command_stop"],  shell=True)
+    context.bot.send_message(update.message.chat_id, _("{0}: sshd daemon was closed automatically.").format(get_hostname()))
 
 def get_hostname():
     return gethostname()
