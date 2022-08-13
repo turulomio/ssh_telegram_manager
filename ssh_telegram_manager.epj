@@ -2,7 +2,7 @@
   "header": {
     "comment": "eric project file for project ssh_telegram_manager",
     "copyright": "Copyright (C) 2022 , ",
-    "saved": "2022-08-13, 09:02:02"
+    "saved": "2022-08-13, 11:40:59"
   },
   "project": {
     "AUTHOR": "",
@@ -67,7 +67,15 @@
       "PathPrefix": ""
     },
     "RESOURCES": [],
-    "SOURCES": [],
+    "SOURCES": [
+      "etc/ssh_telegram_manager/ssh_telegram_manager.default",
+      "setup.py",
+      "ssh_telegram_manager/__init__.py",
+      "ssh_telegram_manager/core.py",
+      "ssh_telegram_manager/reusing/datetime_functions.py",
+      "ssh_telegram_manager/reusing/file_functions.py",
+      "ssh_telegram_manager/reusing/github.py"
+    ],
     "SPELLEXCLUDES": "",
     "SPELLLANGUAGE": "en_US",
     "SPELLWORDS": "",
