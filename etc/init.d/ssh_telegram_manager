@@ -2,10 +2,6 @@
 
 description="SSH Monitor sending logins to Telegram"
 
-depend() {
-        need sshd
-}
-
 start() {
         local pidfile=/var/run/ssh_telegram_manager.pid
         ebegin "Starting ssh_telegram_manager"
