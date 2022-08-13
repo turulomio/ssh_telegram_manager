@@ -140,7 +140,7 @@ setup(name='ssh_telegram_manager',
      author_email='turulomio@yahoo.es',
      license='GPL-3',
      packages=['ssh_telegram_manager'],
-     install_requires=[],
+     install_requires=['python-telegram-bot'],
      entry_points = {'console_scripts': [
                             'ssh_telegram_manager=ssh_telegram_manager.core:main',
                         ],

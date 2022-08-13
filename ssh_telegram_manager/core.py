@@ -1,19 +1,17 @@
 from .__init__ import __versiondate__, __version__
-from .reusing.datetime_functions import string2dtnaive
 from argparse import ArgumentParser, RawTextHelpFormatter
 from configparser import ConfigParser
-from datetime import datetime, timedelta
 from gettext import translation
 from logging import info, ERROR, WARNING, INFO, DEBUG, CRITICAL, basicConfig
 from os import path
 from pkg_resources import resource_filename
-from requests import post, get
-from socket import socket,  AF_INET, SOCK_DGRAM
+from socket import gethostname
 from subprocess import run
 from sys import exit
-from time import sleep
 
 from signal import signal,  SIGINT
+from threading import Timer
+from telegram.ext import (Updater, CommandHandler)
 
 try:
     t=translation('ssh_telegram_manager', resource_filename("ssh_telegram_manager","locale"))
@@ -60,72 +58,40 @@ def main():
     config_filename="/etc/ssh_telegram_manager/ssh_telegram_manager"
     addDebugSystem(args.debug)
         
-    lastlog=datetime.now()-timedelta(minutes=30)
     global config
     if not path.exists(config_filename):
         print(_("You must set and configure {0}").format(config_filename))
-        print(_("You can find in source code in conf.d directory"))
+        print(_("You can find and rename '{0}.default' from source code").format(config_filename))
         return
     
     config = ConfigParser()
-    config.read(config_filename)    
-    print(_("Starting to monitor logs from {0}").format(lastlog))
+    config.read(config_filename)
+    print(_("Starting manager"))
     
-    while True:
-        # Search for sshd logins
-        cat = run("cat /var/log/messages| grep -i sshd", shell=True, capture_output=True)        
-        lines=cat.stdout.decode("UTF-8").split('\n')
-        send=[]
-        for line in lines:
-            if any(pattern in line for pattern in [
-                'sshd:auth', 
-                'sshd:session', 
-                'Accepted keyboard-interactive/pam', 
-                'onnect', 
-                'Permission denied', 
-            ]):
-                dt=string2dtnaive( line[:-len(line)+15], '%b %d %H:%M:%S')
-                if lastlog<=dt:
-                    lastlog=dt
-                    send.append(line)
-        lastlog=lastlog+timedelta(microseconds=1)# To not repeat lastlogs
-        
-        # Sends 3 lines on message
-        if len(send)>0:
-            public_ip=get_public_ip()
-            internal_ip=get_internal_ip()
-            message=""
-            for i, line in enumerate(send):
-                message=message + line + "\n"
-                if i==len(send)-1 or i % 3==2:
-                    message=message  + f"\nMy internal ip: {internal_ip}\nMy public ip: {public_ip}" 
-                    send_message_with_requests(message)
-                    message=""
-                    
-        # Waits interval
-        sleep(float(config["Logs"]["interval"]))
-        
-def get_public_ip():
-    """    
-        Gets public ip using API in ipify.org
-    """
-    return get('https://api.ipify.org').text
-    
-def get_internal_ip():
-    """
-        Gets internal ip 
-    """
-    s= socket(AF_INET, SOCK_DGRAM)
-    s.connect(("www.google.com", 80))
-    return s.getsockname()[0]
+    updater=Updater(config["Telegram"]["Token"], use_context=True)
+    dp=updater.dispatcher
 
-            
-def send_message_with_requests(message):
-    token= config["Telegram"]["token"]
-    chat_id= config["Telegram"]["chat_id"]
-    d={"chat_id": chat_id,  "text": message}
-    url = f"https://api.telegram.org/bot{token}/sendMessage"
-    r=post(url, d)
-    print("Message sent at", datetime.now(),  r, d)
+    # Eventos que activarán nuestro bot.
+    dp.add_handler(CommandHandler(f'{get_hostname()}_start',	start))
 
+    # Comienza el bot
+    updater.start_polling()
+    # Lo deja a la escucha. Evita que se detenga.
+    updater.idle()
+
+    print(_("Stopping manager"))
+        
+def start(update, context):
+    p=run("/etc/init.d/sshd start",  shell=True)
+    context.bot.send_message(update.message.chat_id, _("{0}: sshd daemon was launched. Return code: {1}.").format(get_hostname(), p.stdout))
     
+    t = Timer(interval=int(config["SSHD"]["autoclose_minutes"])*60, function=autoclose, args=(get_hostname(),update, context))
+    t.start()
+
+def autoclose(hostname, update, context):
+    p=run("/etc/init.d/sshd stop",  shell=True)
+    context.bot.send_message(update.message.chat_id, _("{0}: sshd daemon was closed automatically. Return code: {1}.").format(get_hostname(), p.stdout))
+
+def get_hostname():
+    return gethostname()
+

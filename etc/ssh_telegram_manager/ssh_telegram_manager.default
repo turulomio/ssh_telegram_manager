@@ -2,6 +2,5 @@
 token = your_bot_token
 chat_id = your_chat_id
 
-[Logs]
-file = /var/log/messages
-interval = 30
+[SSHD]
+autoclose_minutes=1
