@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TooManyFiles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-28 17:38+0200\n"
+"POT-Creation-Date: 2022-08-13 16:04+0200\n"
 "PO-Revision-Date: 2020-04-03 08:54+0200\n"
 "Last-Translator: trabajo <turulomio@yahoo.es>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -35,10 +35,20 @@ msgstr "Información de depuración del programa"
 msgid "You must set and configure {0}"
 msgstr ""
 
-msgid "You can find in source code in conf.d directory"
+#, python-brace-format
+msgid "You can find and rename '{0}.default' from source code"
+msgstr ""
+
+msgid "Starting manager"
+msgstr ""
+
+msgid "Stopping manager"
 msgstr ""
 
 #, python-brace-format
-msgid "Starting to monitor logs from {0}"
+msgid "{0}: sshd daemon was launched."
 msgstr ""
 
+#, python-brace-format
+msgid "{0}: sshd daemon was closed automatically."
+msgstr ""
