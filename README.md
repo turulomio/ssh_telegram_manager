@@ -16,5 +16,8 @@ If you use other Linux distribution, you can use pip
 
 ## Changelog
 
+### 0.3.0 (2022-08-17)
+- Now waits for Internet before connecting to Telegram to avoid errors
+
 ### 0.1.1 (2022-08-13)
 - Basic functionality
