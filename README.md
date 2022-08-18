@@ -1,5 +1,5 @@
-# ssh_telegram_manager
-Telegram bot to launch ssh on demand. You can avoid to expose your ssh port constantly on Internet.
+# SSH Telegram Manager
+SSH Telegram Manager is a Telegram bot to launch ssh on demand. With this tool, you can avoid to expose your ssh port permanently on Internet.
 
 ## Installation
 ### Gentoo
