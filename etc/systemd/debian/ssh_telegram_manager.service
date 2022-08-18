@@ -1,0 +1,10 @@
+[Unit]
+Description=ssh_telegram_manager daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/ssh_telegram_manager
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
