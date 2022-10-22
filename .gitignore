@@ -6,3 +6,6 @@ locale/*.po~
 ssh_telegram_manager.egg-info/
 .eric7project/
 .jedi
+ssh_telegram_manager/reusing/__pycache__/
+doc/html/
+doc/unogenerator.tag

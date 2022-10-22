@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-17 13:19+0200\n"
+"POT-Creation-Date: 2022-10-22 07:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Developed by Mariano Muñoz 2022-{}"
 msgstr ""
 
-msgid "Enables a ssh monitor with login advices in telegram"
+msgid "Launches a Telegram bot to start sshd daemon on demand"
 msgstr ""
 
 msgid "Debug program information"
@@ -38,6 +38,15 @@ msgid "You can find and rename '{0}.default' from source code"
 msgstr ""
 
 msgid "Starting manager"
+msgstr ""
+
+msgid "Current system datetime is wrong. I will try again after 10 seconds"
+msgstr ""
+
+msgid "Internet detected"
+msgstr ""
+
+msgid "Internet wasn't detected. I will try again after 10 seconds"
 msgstr ""
 
 msgid "Stopping manager"

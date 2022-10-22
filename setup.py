@@ -74,13 +74,24 @@ class Procedure(Command):
 
 """.format(__version__))
 
+
 ## Class to define doxygen command
 class Doxygen(Command):
     description = "Create/update doxygen documentation in doc/html"
-    user_options = []
+
+    user_options = [
+      # The format is (long option, short option, description).
+      ( 'user=', None, 'Remote ssh user'),
+      ( 'directory=', None, 'Remote ssh path'),
+      ( 'port=', None, 'Remote ssh port'),
+      ( 'server=', None, 'Remote ssh server'),
+  ]
 
     def initialize_options(self):
-        pass
+        self.user="root"
+        self.directory="/var/www/html/doxygen/ssh_telegram_manager/"
+        self.port=22
+        self.server="127.0.0.1"
 
     def finalize_options(self):
         pass
@@ -91,8 +102,10 @@ class Doxygen(Command):
         os.system("""sed -i -e "41iPROJECT_NUMBER         = {}" doc/Doxyfile""".format(__version__))#Insert line 41
         os.system("rm -Rf build")
         os.chdir("doc")
-        os.system("doxygen Doxyfile")
-        os.system("rsync -avzP -e 'ssh -l turulomio' html/ frs.sourceforge.net:/home/users/t/tu/turulomio/userweb/htdocs/doxygen/ssh_telegram_manager/ --delete-after")
+        os.system("doxygen Doxyfile")      
+        command=f"""rsync -avzP -e 'ssh -l {self.user} -p {self.port} ' html/ {self.server}:{self.directory} --delete-after"""
+        print(command)
+        os.system(command)
         os.chdir("..")
 
 ## Class to define uninstall command

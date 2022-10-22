@@ -53,7 +53,7 @@ def addDebugSystem(level):
 def main():
     
     signal(SIGINT, signal_handler)
-    parser=ArgumentParser(description=_('Enables a ssh monitor with login advices in telegram'), epilog=argparse_epilog(), formatter_class=RawTextHelpFormatter)
+    parser=ArgumentParser(description=_('Launches a Telegram bot to start sshd daemon on demand'), epilog=argparse_epilog(), formatter_class=RawTextHelpFormatter)
     parser.add_argument('--version', action='version', version=__version__)
     parser.add_argument('--debug', help=_("Debug program information"), choices=["DEBUG","INFO","WARNING","ERROR","CRITICAL"], default="INFO")
     args=parser.parse_args()
