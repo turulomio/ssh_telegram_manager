@@ -12,8 +12,8 @@ from sys import exit
 
 from signal import signal,  SIGINT
 from time import sleep
-from threading import Timer
-from telegram.ext import (Updater, CommandHandler)
+from telegram import Update
+from telegram.ext import CommandHandler, ApplicationBuilder, ContextTypes
 
 try:
     t=translation('ssh_telegram_manager', resource_filename("ssh_telegram_manager","locale"))
@@ -90,35 +90,26 @@ def main():
             sleep(10)
     
     ## Starts connection
-    updater=Updater(config["Telegram"]["Token"], use_context=True)
-    dp=updater.dispatcher
-
-    # Eventos que activarán nuestro bot.
-    dp.add_handler(CommandHandler(f'{get_hostname()}_start',	start))
-
-    # Comienza el bot
-    updater.start_polling()
-    # Lo deja a la escucha. Evita que se detenga.
-    updater.idle()
+    app = ApplicationBuilder().token(config["Telegram"]["Token"]).build()
+    app.add_handler(CommandHandler('ssh_start',	start))
+    app.run_polling()
 
     info(_("Stopping manager"))
         
-def start(update, context):
+async def start(update: Update, context=ContextTypes.DEFAULT_TYPE) -> None:
     command=config["SSHD"]["command_start"]
     run(command,  shell=True)
     message=_("{0}: sshd daemon was launched with command '{1}'.").format(get_hostname(), command)
     info(message)
-    context.bot.send_message(update.message.chat_id, message)
-    
-    t = Timer(interval=int(config["SSHD"]["autoclose_minutes"])*60, function=autoclose, args=(get_hostname(),update, context))
-    t.start()
+    await context.bot.send_message(update.message.chat_id, message)
+    sleep(60)
 
-def autoclose(hostname, update, context):
     command=config["SSHD"]["command_stop"]
     run(command,  shell=True)
     message=_("{0}: sshd daemon was closed automatically with command '{1}'.").format(get_hostname(), command)
     info(message)
-    context.bot.send_message(update.message.chat_id, message)
+    await context.bot.send_message(update.message.chat_id, message)
+
 
 def get_hostname():
     return gethostname()
