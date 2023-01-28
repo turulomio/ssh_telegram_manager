@@ -152,7 +152,12 @@ setup(name='ssh_telegram_manager',
      author='Turulomio',
      author_email='turulomio@yahoo.es',
      license='GPL-3',
-     packages=['ssh_telegram_manager'],
+     packages=[
+        'ssh_telegram_manager', 
+        'ssh_telegram_manager.reusing', 
+        'ssh_telegram_manager.locale.es.LC_MESSAGES', 
+        'ssh_telegram_manager.locale.en.LC_MESSAGES', 
+    ],
      install_requires=['python-telegram-bot'],
      entry_points = {'console_scripts': [
                             'ssh_telegram_manager=ssh_telegram_manager.core:main',
