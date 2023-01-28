@@ -1,8 +1,8 @@
 {
   "header": {
     "comment": "eric project file for project ssh_telegram_manager",
-    "copyright": "Copyright (C) 2022 , ",
-    "saved": "2022-08-13, 11:40:59"
+    "copyright": "Copyright (C) 2023 , ",
+    "saved": "2023-01-28, 08:56:08"
   },
   "project": {
     "AUTHOR": "",
@@ -11,6 +11,7 @@
     "DOCSTRING": "",
     "DOCUMENTATIONPARMS": {},
     "EMAIL": "",
+    "EMBEDDED_VENV": false,
     "EOL": 0,
     "FILETYPES": {
       "*.e4p": "OTHERS",
@@ -53,7 +54,10 @@
       "MakeTestOnly": true
     },
     "MIXEDLANGUAGE": false,
-    "OTHERS": [],
+    "OTHERS": [
+      "README.md",
+      "ssh_telegram_manager.epj"
+    ],
     "OTHERTOOLSPARMS": {},
     "PACKAGERSPARMS": {},
     "PROGLANGUAGE": "Python3",
@@ -84,6 +88,7 @@
     "TRANSLATIONPATTERN": "",
     "TRANSLATIONS": [],
     "TRANSLATIONSBINPATH": "",
+    "TRANSLATIONSOURCESTARTPATH": "",
     "UICPARAMS": {
       "Package": "",
       "PackagesRoot": "",
