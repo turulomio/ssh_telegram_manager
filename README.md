@@ -29,6 +29,8 @@ If you use Debian, you can use pip `pip install ssh_telegram_manager`
 
 
 ## Changelog
+### 0.6.0
+- Migrated setup.py to pyproject.toml with poetry.
 
 ### 0.5.0
 - Upgraded code to python-telegram-bot-20.0 api
