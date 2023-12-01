@@ -22,7 +22,8 @@ build-backend = "poetry.core.masonry.api"
 release = { script = "ssh_telegram_manager.poethepoet:release" }
 translate = { script = "ssh_telegram_manager.poethepoet:translate" }
 reusing = { script = "ssh_telegram_manager.poethepoet:reusing" }
-test   = "pytest" 
+test = { script = "ssh_telegram_manager.poethepoet:pytest" }
+coverage = { script = "ssh_telegram_manager.poethepoet:coverage" }
 
 [project.urls]
 homepage = "https://github.com/turulomio/ssh_telegram_manager/"
