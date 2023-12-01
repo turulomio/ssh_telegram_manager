@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "ssh-telegram-manager"
+version = "0.5.0"
+description = "Python app to launch sshd server from Telegram"
+authors = ["turulomio <turulomio@yahoo.es>"]
+license = "GPL-3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+python-telegram-bot = ">=20.7"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=7.4.3"
+poethepoet = ">=0.24.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+ssh_telegram_manager='ssh_telegram_manager.core:main'
+
+[tool.poe.tasks]
+release = { script = "ssh_telegram_manager.poethepoet:release" }
+translate = { script = "ssh_telegram_manager.poethepoet:translate" }
+test = { script = "ssh_telegram_manager.poethepoet:pytest" }
+coverage = { script = "ssh_telegram_manager.poethepoet:coverage" }
+
+[project.urls]
+homepage = "https://github.com/turulomio/ssh_telegram_manager/"
+repository = "https://github.com/turulomio/ssh_telegram_manager/"
+changelog = "https://github.com/turulomio/ssh_telegram_manager#changelog"
