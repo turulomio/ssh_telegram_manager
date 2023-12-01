@@ -18,10 +18,12 @@ poethepoet = ">=0.24.4"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.poetry.scripts]
+ssh_telegram_manager='ssh_telegram_manager.core:main'
+
 [tool.poe.tasks]
 release = { script = "ssh_telegram_manager.poethepoet:release" }
 translate = { script = "ssh_telegram_manager.poethepoet:translate" }
-reusing = { script = "ssh_telegram_manager.poethepoet:reusing" }
 test = { script = "ssh_telegram_manager.poethepoet:pytest" }
 coverage = { script = "ssh_telegram_manager.poethepoet:coverage" }
 
