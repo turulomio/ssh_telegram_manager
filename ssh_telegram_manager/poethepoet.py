@@ -30,10 +30,7 @@ def translate():
         system("msgmerge -N --no-wrap -U ssh_telegram_manager/locale/es.po ssh_telegram_manager/locale/ssh_telegram_manager.pot")
         system("msgfmt -cv -o ssh_telegram_manager/locale/es/LC_MESSAGES/ssh_telegram_manager.mo ssh_telegram_manager/locale/es.po")
         system("msgfmt -cv -o ssh_telegram_manager/locale/en/LC_MESSAGES/ssh_telegram_manager.mo ssh_telegram_manager/locale/en.po")
-        system("xgettext -L Python --no-wrap --no-location --from-code='UTF-8' -o locale/ssh_telegram_manager.pot *.py ssh_telegram_manager/*.py ssh_telegram_manager/reusing/*.py setup.py")
-        system("msgmerge -N --no-wrap -U locale/es.po locale/ssh_telegram_manager.pot")
-        system("msgfmt -cv -o ssh_telegram_manager/locale/es/LC_MESSAGES/ssh_telegram_manager.mo locale/es.po")
-        system("msgfmt -cv -o ssh_telegram_manager/locale/en/LC_MESSAGES/ssh_telegram_manager.mo locale/en.po")
+
 
 
 
