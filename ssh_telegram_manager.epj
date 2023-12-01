@@ -2,7 +2,7 @@
   "header": {
     "comment": "eric project file for project ssh_telegram_manager",
     "copyright": "Copyright (C) 2023 , ",
-    "saved": "2023-01-28, 08:56:08"
+    "saved": "2023-12-01, 23:48:21"
   },
   "project": {
     "AUTHOR": "",
@@ -76,10 +76,12 @@
       "setup.py",
       "ssh_telegram_manager/__init__.py",
       "ssh_telegram_manager/core.py",
+      "ssh_telegram_manager/poethepoet.py",
       "ssh_telegram_manager/reusing/datetime_functions.py",
       "ssh_telegram_manager/reusing/file_functions.py",
       "ssh_telegram_manager/reusing/github.py"
     ],
+    "SOURCESDIR": "",
     "SPELLEXCLUDES": "",
     "SPELLLANGUAGE": "en_US",
     "SPELLWORDS": "",
