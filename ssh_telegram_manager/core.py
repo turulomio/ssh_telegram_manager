@@ -5,7 +5,7 @@ from datetime import datetime
 from gettext import translation
 from logging import info, ERROR, WARNING, INFO, DEBUG, CRITICAL, basicConfig, warning
 from os import path
-from pkg_resources import resource_filename
+from importlib.resources import files
 from socket import gethostname, create_connection
 from subprocess import run
 from sys import exit
@@ -16,7 +16,7 @@ from telegram import Update
 from telegram.ext import CommandHandler, ApplicationBuilder, ContextTypes
 
 try:
-    t=translation('ssh_telegram_manager', resource_filename("ssh_telegram_manager","locale"))
+    t=translation('ssh_telegram_manager', files("ssh_telegram_manager") / 'locale')
     _=t.gettext
 except:
     _=str
