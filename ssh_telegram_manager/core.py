@@ -6,14 +6,13 @@ from gettext import translation
 from logging import info, ERROR, WARNING, INFO, DEBUG, CRITICAL, basicConfig, warning
 from os import path
 from importlib.resources import files
+from signal import signal,  SIGINT
 from socket import gethostname, create_connection
 from subprocess import run
 from sys import exit
-
-from signal import signal,  SIGINT
-from time import sleep
 from telegram import Update
 from telegram.ext import CommandHandler, ApplicationBuilder, ContextTypes
+from time import sleep
 
 try:
     t=translation('ssh_telegram_manager', files("ssh_telegram_manager") / 'locale')
