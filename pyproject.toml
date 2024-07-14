@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ssh-telegram-manager"
-version = "0.6.0"
+version = "1.0.0"
 description = "Python app to launch sshd server from Telegram"
 authors = ["turulomio <turulomio@yahoo.es>"]
 license = "GPL-3"
