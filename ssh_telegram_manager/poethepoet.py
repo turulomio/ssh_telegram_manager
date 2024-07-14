@@ -26,7 +26,7 @@ def release():
   * linguist
   * poe translate
   * git commit -a -m 'ssh_telegram_manager-{0}'
-  * git push
+  * git push --set-upstream origin ssh_telegram_manager-{0}
   * Hacer un pull request con los cambios a main e integrarlo en main
   * Hacer un nuevo tag en GitHub
   * git checkout main
