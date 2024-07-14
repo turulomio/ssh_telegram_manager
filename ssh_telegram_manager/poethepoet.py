@@ -18,6 +18,8 @@ def release():
     Nueva versión:
   * Cambiar la versión en ssh_telegram_manager/__init__.py
   * Cambiar la versión en pyproject.toml
+  * Ejecutar otra vez poe release
+  * git checkout -b ssh_telegram_manager-{0}
   * Modificar el Changelog en README
   * poe coverage
   * poe translate
@@ -25,7 +27,10 @@ def release():
   * poe translate
   * git commit -a -m 'ssh_telegram_manager-{0}'
   * git push
+  * Hacer un pull request con los cambios a main e integrarlo en main
   * Hacer un nuevo tag en GitHub
+  * git checkout main
+  * git pull
   * poetry build
   * poetry publish --username --password  
   * Crea un nuevo ebuild de ssh_telegram_manager Gentoo con la nueva versión
