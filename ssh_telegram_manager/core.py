@@ -91,6 +91,7 @@ def main():
     ## Starts connection
     app = ApplicationBuilder().token(config["Telegram"]["Token"]).build()
     app.add_handler(CommandHandler('ssh_start',	start))
+    app.add_handler(CommandHandler('ip', ip_command))
     app.run_polling()
 
     info(_("Stopping manager"))
@@ -109,7 +110,26 @@ async def start(update: Update, context=ContextTypes.DEFAULT_TYPE) -> None:
     info(message)
     await context.bot.send_message(update.message.chat_id, message)
 
+async def ip_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Sends the external IP address of the server."""
+    info(_("Received /ip command."))
+    try:
+        # Use curl to get the external IP address. -s makes it silent.
+        result = run(["curl", "-s", "ifconfig.me"], capture_output=True, text=True, check=True)
+        external_ip = result.stdout.strip()
+        
+        if external_ip:
+            message = _("{0}: External IP address is: {1}").format(get_hostname(), external_ip)
+            info(message)
+            await context.bot.send_message(update.message.chat_id, message)
+        else:
+            error_message = _("{0}: Could not retrieve external IP address.").format(get_hostname())
+            warning(error_message)
+            await context.bot.send_message(update.message.chat_id, error_message)
+    except Exception as e:
+        error_message = _("{0}: Error retrieving external IP address: {1}").format(get_hostname(), str(e))
+        warning(error_message)
+        await context.bot.send_message(update.message.chat_id, error_message)
 
 def get_hostname():
     return gethostname()
-
