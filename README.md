@@ -1,8 +1,6 @@
 # SSH Telegram Manager
 SSH Telegram Manager is a Telegram bot designed to launch your SSH daemon on demand. This tool allows you to keep your SSH port closed by default, enhancing security by only exposing it when you explicitly request it via Telegram.
 
-![Screenshot of a working SSH Telegram Manager bot](https://github.com/turulomio/ssh_telegram_manager/blob/main/doc/telegram_bot.png)
-
 ## Features
 *   **On-demand SSH:** Start your SSH server only when needed via a Telegram command.
 *   **Automatic Shutdown:** SSH server automatically closes after a configurable timeout.

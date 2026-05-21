@@ -1,6 +1,6 @@
 [project]
 name = "ssh-telegram-manager"
-version = "1.0.0"
+version = "1.1.0"
 description = "Python app to launch sshd server from Telegram"
 requires-python = ">=3.10,<4.0"
 authors = [{name = "turulomio", email = "turulomio@yahoo.es"}]
