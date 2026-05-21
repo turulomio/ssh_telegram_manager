@@ -1,10 +1,20 @@
-[tool.poetry]
+[project]
 name = "ssh-telegram-manager"
 version = "1.0.0"
 description = "Python app to launch sshd server from Telegram"
-authors = ["turulomio <turulomio@yahoo.es>"]
-license = "GPL-3"
+authors = [{name = "turulomio", email = "turulomio@yahoo.es"}]
+license = { text = "GPL-3" }
 readme = "README.md"
+
+[project.urls]
+homepage = "https://github.com/turulomio/ssh_telegram_manager/"
+repository = "https://github.com/turulomio/ssh_telegram_manager/"
+changelog = "https://github.com/turulomio/ssh_telegram_manager#changelog"
+
+[tool.poetry]
+# The metadata fields (name, version, description, authors, license, readme)
+# have been moved to the [project] table for PEP 621 compliance.
+# Poetry will read these from [project] if present.
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
@@ -27,8 +37,3 @@ release = { script = "ssh_telegram_manager.poethepoet:release" }
 translate = { script = "ssh_telegram_manager.poethepoet:translate" }
 pytest = { script = "ssh_telegram_manager.poethepoet:pytest" }
 coverage = { script = "ssh_telegram_manager.poethepoet:coverage" }
-
-[project.urls]
-homepage = "https://github.com/turulomio/ssh_telegram_manager/"
-repository = "https://github.com/turulomio/ssh_telegram_manager/"
-changelog = "https://github.com/turulomio/ssh_telegram_manager#changelog"
