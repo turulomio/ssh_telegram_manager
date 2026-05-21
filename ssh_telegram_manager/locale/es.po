@@ -1,15 +1,15 @@
 # Spanish translations for PACKAGE package
 # Traducciones al español para el paquete PACKAGE.
-# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2022-2024 Mariano Muñoz
 # This file is distributed under the same license as the PACKAGE package.
 #
-# root <turulomio@yahoo.es>, 2015, 2020.
+# root <turulomio@yahoo.es>, 2022-2024.
 msgid ""
 msgstr ""
-"Project-Id-Version: TooManyFiles\n"
+"Project-Id-Version: ssh_telegram_manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-22 07:46+0200\n"
-"PO-Revision-Date: 2020-04-03 08:54+0200\n"
+"POT-Creation-Date: 2024-07-29 10:00+0000\n"
+"PO-Revision-Date: 2024-07-29 10:00+0000\n"
 "Last-Translator: trabajo <turulomio@yahoo.es>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
 "Language: es\n"
@@ -61,3 +61,18 @@ msgstr "{0}: el demonio sshd fue lanzado con el comando '{1}'."
 #, python-brace-format
 msgid "{0}: sshd daemon was closed automatically with command '{1}'."
 msgstr "{0}: el demonio sshd fue cerrado automáticamente con el comando '{1}'."
+
+msgid "Received /ip command."
+msgstr "Comando /ip recibido."
+
+#, python-brace-format
+msgid "{0}: External IP address is: {1}"
+msgstr "{0}: La dirección IP externa es: {1}"
+
+#, python-brace-format
+msgid "{0}: Could not retrieve external IP address."
+msgstr "{0}: No se pudo obtener la dirección IP externa."
+
+#, python-brace-format
+msgid "{0}: Error retrieving external IP address: {1}"
+msgstr "{0}: Error al obtener la dirección IP externa: {1}"
