@@ -2,35 +2,30 @@
 name = "ssh-telegram-manager"
 version = "1.0.0"
 description = "Python app to launch sshd server from Telegram"
+requires-python = ">=3.10,<4.0"
 authors = [{name = "turulomio", email = "turulomio@yahoo.es"}]
-license = { text = "GPL-3" }
+license = "GPL-3.0-only"
 readme = "README.md"
+dependencies = [ # This is for PEP 621 core dependencies
+    "python-telegram-bot>=22.7",
+]
 
 [project.urls]
 homepage = "https://github.com/turulomio/ssh_telegram_manager/"
 repository = "https://github.com/turulomio/ssh_telegram_manager/"
 changelog = "https://github.com/turulomio/ssh_telegram_manager#changelog"
 
-[tool.poetry]
-# The metadata fields (name, version, description, authors, license, readme)
-# have been moved to the [project] table for PEP 621 compliance.
-# Poetry will read these from [project] if present.
-
-[tool.poetry.dependencies]
-python = ">=3.8,<4.0"
-python-telegram-bot = ">=21.4"
+[project.scripts]
+ssh_telegram_manager='ssh_telegram_manager.core:main'
 
 [tool.poetry.group.dev.dependencies]
-pytest = ">=8.2.2"
-poethepoet = ">=0.27.0"
-coverage = ">=7.6.0"
+pytest = ">=9.0.3"
+poethepoet = ">=0.46.0"
+coverage = ">=7.14.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-ssh_telegram_manager='ssh_telegram_manager.core:main'
 
 [tool.poe.tasks]
 release = { script = "ssh_telegram_manager.poethepoet:release" }
